@@ -1,12 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 import { theme } from './theme';
+import pxToRem from '../utils/pxToRem';
 
 export const GlobalStyles = createGlobalStyle`
 	:root {
 		--colour-white: ${theme.colours.white};
 		--colour-black: ${theme.colours.black};
-		--colour-system-white-50: ${theme.colours.systemWhite.grey50};
-		--colour-system-black-50: ${theme.colours.systemBlack.grey50};
 		--font-default: ${theme.fonts.default};
 		--transition-speed-default: ${theme.transitionSpeed.default};
 		--transition-speed-fast: ${theme.transitionSpeed.fast};
@@ -32,8 +31,8 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	::selection {
-		background-color: red;
-		color: black;
+		background-color: white;
+		color: yellow;
 	}
 
 	html {
@@ -86,70 +85,44 @@ export const GlobalStyles = createGlobalStyle`
 
 	h1,
 	.type-h1 {
-		font-size: ${theme.size.h1};
-		line-height: 2.813rem;
+		font-size: ${pxToRem(80)};
+		line-height: ${pxToRem(84)};
 
 		@media ${theme.mediaBreakpoints.tabletPortrait}
 		{
-			font-size: ${theme.sizeTablet.h1};
-		}
-
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.h1};
-			line-height: 2.125rem;
+			font-size: ${pxToRem(42)};
+			line-height: ${pxToRem(44)}
 		}
 	}
 
 	h2,
 	.type-h2 {
-		font-size: ${theme.size.h2};
-		line-height: 2.25rem;
+		font-size: ${pxToRem(45)};
+		line-height: ${pxToRem(55)};
 
 		@media ${theme.mediaBreakpoints.tabletPortrait}
 		{
-			font-size: ${theme.sizeTablet.h2};
-		}
-
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.h2};
-			line-height: 1.75rem;
+			font-size: ${pxToRem(25)};
+			line-height: ${pxToRem(26)};
 		}
 	}
 
 	h3,
 	.type-h3 {
-		font-size: ${theme.size.h3};
-		line-height: 1.938rem;
+		font-size: ${pxToRem(22)};
+		line-height: ${pxToRem(27)};
 
 		@media ${theme.mediaBreakpoints.tabletPortrait}
 		{
-			font-size: ${theme.sizeTablet.h3};
-		}
-
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.h3};
-			line-height: 1.563rem;
+			font-size: ${pxToRem(16)};
+			line-height: normal;
 		}
 	}
 
 	h4,
 	.type-h4 {
-		font-size: ${theme.size.h4};
-		line-height: 1.563rem;
-
-		@media ${theme.mediaBreakpoints.tabletPortrait}
-		{
-			font-size: ${theme.sizeTablet.h4};
-		}
-
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.h4};
-			line-height: 1.375rem;
-		}
+		font-size: ${pxToRem(16)};
+		line-height: normal;
 	}
 
 	p,
@@ -157,14 +130,8 @@ export const GlobalStyles = createGlobalStyle`
 	a,
 	button,
 	div {
-		font-size: ${theme.size.body};
-		line-height: 1.938rem;
-
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.body};
-			line-height: 1.75rem;
-		}
+		font-size: ${pxToRem(16)};
+		line-height: normal;
 	}
 
 	.view-element-fade-in

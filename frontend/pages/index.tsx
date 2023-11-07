@@ -1,35 +1,44 @@
 import styled from 'styled-components';
 import { NextSeo } from 'next-seo';
+import client from '../client';
+import { homePageQueryString, siteSettingsQueryString } from '../queries';
+import { HomePageType, SiteSettingsType } from '../shared/types/types';
 
 const PageWrapper = styled.div``;
 
 type Props = {
-	data: {}
+	data: HomePageType;
+	siteSettings: SiteSettingsType;
 };
 
 const Page = (props: Props) => {
 	const {
-		data
+		data,
+		siteSettings
 	} = props;
 
+	console.log('data', data);
+	console.log('siteSettings', siteSettings);
+
 	return (
-	<PageWrapper>
-		<NextSeo
-			title="Boiler"
-			description="Boiler Plate"
-		/>
-		Home
-	</PageWrapper>
+		<PageWrapper>
+			<NextSeo
+				title={data?.seoTitle || 'Aka'}
+				description={data?.seoDescription || ''}
+			/>
+			Home
+		</PageWrapper>
 	);
 };
 
 export async function getStaticProps() {
-	// const data = await getPage('home');
-	const data = false;
+	const siteSettings = await client.fetch(siteSettingsQueryString);
+	const data = await client.fetch(homePageQueryString);
 
 	return {
 		props: {
 			data,
+			siteSettings
 		},
 	};
 }

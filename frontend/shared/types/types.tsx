@@ -29,3 +29,24 @@ export type Transitions = {
 		}
 	}
 };
+
+export type CapabilityType = {
+	title: string;
+	description: string;
+}
+
+export type HomePageType = {
+	capabilities: CapabilityType[];
+	introHeading: string;
+	seoTitle: string;
+	seoDescription: string;
+}
+
+export type SiteSettingsType = {
+	acknowledgementOfCountry: string;
+	address: [];
+	addressUrl: string;
+	email: string;
+	instagramUrl: string;
+	linkedInUrl: string;
+}
