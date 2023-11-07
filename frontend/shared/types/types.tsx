@@ -49,4 +49,6 @@ export type SiteSettingsType = {
 	email: string;
 	instagramUrl: string;
 	linkedInUrl: string;
+	desktopLandingMedia: any;
+	mobileLandingMedia: any;
 }

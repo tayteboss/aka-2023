@@ -11,6 +11,11 @@ const Wrapper = styled.div`
 	max-width: ${(props) => props.theme.layout.innerWrapper};
 	padding-left: ${pxToRem(45)};
 	padding-right: ${pxToRem(45)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding-left: ${pxToRem(20)};
+		padding-right: ${pxToRem(20)};
+	}
 `;
 
 const LayoutWrapper = (props: Props) => (

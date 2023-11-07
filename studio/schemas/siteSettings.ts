@@ -4,8 +4,13 @@ export default {
 	type: "document",
 	fields: [
 		{
-			title: "Landing Media",
-			name: "landingMedia",
+			title: "Desktop Landing Media",
+			name: "desktopLandingMedia",
+			type: "mux.video"	
+		},
+		{
+			title: "Mobile Landing Media",
+			name: "mobileLandingMedia",
 			type: "mux.video"	
 		},
 		{
