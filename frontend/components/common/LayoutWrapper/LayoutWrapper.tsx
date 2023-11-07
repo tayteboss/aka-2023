@@ -9,12 +9,12 @@ type Props = {
 const Wrapper = styled.div`
 	margin: 0 auto;
 	max-width: ${(props) => props.theme.layout.innerWrapper};
-	padding-left: ${pxToRem(16)};
-	padding-right: ${pxToRem(16)};
+	padding-left: ${pxToRem(45)};
+	padding-right: ${pxToRem(45)};
 `;
 
 const LayoutWrapper = (props: Props) => (
-	<Wrapper className="inner-wrapper">{props.children}</Wrapper>
+	<Wrapper className="layout-wrapper">{props.children}</Wrapper>
 );
 
 export default LayoutWrapper;

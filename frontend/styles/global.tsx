@@ -74,7 +74,7 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	a {
-		text-decoration: underline;
+		text-decoration: none;
 		color: var(--colour-black);
 		transition: all var(--transition-speed-default) var(--transition-ease);
 	}
@@ -176,6 +176,10 @@ export const GlobalStyles = createGlobalStyle`
 
 	.performance {
 		-webkit-transform: translateZ(0);
+		backface-visibility: hidden;
+		perspective: 1000;
+		transform: translate3d(0,0,0);
+		transform: translateZ(0);
 	}
 
 	::placeholder {

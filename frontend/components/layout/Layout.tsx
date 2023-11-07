@@ -3,7 +3,10 @@ import Header from './Header';
 import Footer from './Footer';
 import { ReactNode } from 'react';
 
-const Main = styled.main``;
+const Main = styled.main`
+	position: relative;
+	z-index: 5;
+`;
 
 type Props = {
 	children: ReactNode;
