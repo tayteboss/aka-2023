@@ -31,13 +31,13 @@ const HomeHeroMedia = () => {
 	const scale = useTransform(
 		scrollY,
 		[0, windowHeight],
-		[1, 1.02]
+		[1, 1.05]
 	);
 
 	const blur = useTransform(
 		scrollY,
 		[0, windowHeight],
-		['blur(0px)', 'blur(3px)']
+		['blur(0px)', 'blur(5px)']
 	);
 
 	useEffect(() => {

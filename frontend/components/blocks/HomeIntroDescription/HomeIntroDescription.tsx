@@ -43,7 +43,7 @@ const HomeIntroDescription = (props: Props) => {
 
 	const blur = useTransform(
 		scrollY,
-		[0, windowHeight],
+		[0, (windowHeight * 0.85)],
 		['blur(25px)', 'blur(0px)']
 	);
 

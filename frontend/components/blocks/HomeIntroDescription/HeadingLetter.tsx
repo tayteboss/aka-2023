@@ -10,9 +10,9 @@ type Props = {
 };
 
 const HeadingLetterWrapper = styled.span<StyledProps>`
-	filter: ${(props) => props.$hasHovered ? 'blur(10px)' : 'blur(0px)'};
+	filter: ${(props) => props.$hasHovered ? 'blur(8px)' : 'blur(0px)'};
 
-	transition: all var(--transition-speed-default) var(--transition-ease);
+	transition: all var(--transition-speed-extra-slow) var(--transition-ease);
 
 	&::selection {
 		background: var(--colour-blue);
