@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 type StyledProps = {
@@ -22,6 +22,15 @@ const HeadingLetterWrapper = styled.span<StyledProps>`
 
 const HeadingLetter = ({ letter }: Props) => {
 	const [hasHovered, setHasHovered] = useState(false);
+
+	useEffect(() => {
+		if (hasHovered) {
+			setTimeout(() => {
+				setHasHovered(false);
+			}, 3000);
+		}
+	}, [hasHovered]);
+	
 
 	return (
 		<HeadingLetterWrapper

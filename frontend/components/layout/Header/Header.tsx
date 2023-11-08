@@ -49,8 +49,8 @@ const LinkWrapper = styled.div<StyledProps>`
 		height: ${pxToRem(13)};
 		width: ${pxToRem(13)};
 		border-radius: 50%;
-		border: 1px solid var(--colour-black);
-		background: ${(props) => props.$isActive ? 'var(--colour-black)' : 'transparant'};
+		border: 1px solid var(--colour-white);
+		background: ${(props) => props.$isActive ? 'var(--colour-white)' : 'transparant'};
 		opacity: ${(props) => props.$isActive ? 1 : 0};
 
 		transition: all var(--transition-speed-default) var(--transition-ease);
