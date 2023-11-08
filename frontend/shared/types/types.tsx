@@ -33,6 +33,7 @@ export type Transitions = {
 export type CapabilityType = {
 	title: string;
 	description: string;
+	index?: number;
 }
 
 export type HomePageType = {

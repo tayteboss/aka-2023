@@ -32,7 +32,7 @@ export const GlobalStyles = createGlobalStyle`
 
 	::selection {
 		background-color: white;
-		color: yellow;
+		color: red;
 	}
 
 	html {
