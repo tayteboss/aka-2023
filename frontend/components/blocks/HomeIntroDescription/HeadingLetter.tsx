@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import pxToRem from '../../../utils/pxToRem';
 
 type StyledProps = {
 	$hasHovered: boolean;
@@ -13,6 +14,10 @@ const HeadingLetterWrapper = styled.span<StyledProps>`
 	filter: ${(props) => props.$hasHovered ? 'blur(8px)' : 'blur(0px)'};
 
 	transition: all var(--transition-speed-extra-slow) var(--transition-ease);
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		font-size: ${pxToRem(42)};
+	}
 
 	&::selection {
 		background: var(--colour-blue);

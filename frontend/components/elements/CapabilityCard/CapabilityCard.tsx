@@ -108,8 +108,8 @@ const CapabilityCard = (props: CapabilityType) => {
 
 	const xTranslate = useTransform(
 		scrollY,
-		[distanceToTop - windowHeight, distanceToTop - windowHeight + (windowHeight * 0.5)],
-		['translateX(-7px)', 'translateX(0px)']
+		[distanceToTop - windowHeight, distanceToTop],
+		['translateX(-10px)', 'translateX(0px)']
 	);
 
 	useEffect(() => {

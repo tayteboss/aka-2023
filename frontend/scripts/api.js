@@ -1,7 +1,6 @@
 const fetch = require('node-fetch');
 const fs = require('fs');
 const dotenv = require('dotenv');
-const { createClient } = require('@sanity/client');
 
 dotenv.config({
   path: '.env.local',
@@ -35,12 +34,13 @@ const getSiteData = async () => {
 	const query = `
 		query {
 			allSiteSettings {
-				acknowlegmentOfCountry
-				address
+				acknowledgementOfCountry
+				addressRaw
 				addressUrl
 				email
 				instagramUrl
 				linkedInUrl
+        emailCta
 			}
 		}
 	`;

@@ -45,11 +45,12 @@ export type HomePageType = {
 
 export type SiteSettingsType = {
 	acknowledgementOfCountry: string;
-	address: [];
+	addressRaw: [];
 	addressUrl: string;
 	email: string;
 	instagramUrl: string;
 	linkedInUrl: string;
 	desktopLandingMedia: any;
 	mobileLandingMedia: any;
+	emailCta: string;
 }

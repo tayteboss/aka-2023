@@ -29,6 +29,11 @@ export default {
 			type: "string"
 		},
 		{
+			title: "Email CTA",
+			name: "emailCta",
+			type: "string"
+		},
+		{
 			title: "Address",
 			name: "address",
 			type: "array",
