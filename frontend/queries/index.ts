@@ -24,3 +24,16 @@ export const workPageQueryString = `
 		...,
 	}
 `;
+
+export const projectsQueryString = `
+	*[_type == 'project'] | order(orderRank) [0...100] {
+		...,
+		thumbnailMedia{asset->},
+		imageGallery[] {
+			...,
+			_type == "image" => {
+				asset->
+			},
+		},
+	}
+`;

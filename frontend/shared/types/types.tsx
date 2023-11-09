@@ -46,6 +46,7 @@ export type HomePageType = {
 export type SiteSettingsType = {
 	acknowledgementOfCountry: string;
 	addressRaw: [];
+	address: [];
 	addressUrl: string;
 	email: string;
 	instagramUrl: string;
@@ -53,4 +54,18 @@ export type SiteSettingsType = {
 	desktopLandingMedia: any;
 	mobileLandingMedia: any;
 	emailCta: string;
+}
+
+export type ProjectType = {
+	title: string;
+	credits: [];
+	description: [];
+	imageGallery: any;
+	scope: string[];
+	slug: {
+		current: string;
+	}
+	status: string;
+	summary: [];
+	thumbnailMedia: any;
 }
