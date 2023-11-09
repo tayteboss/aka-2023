@@ -4,8 +4,13 @@ import LayoutWrapper from '../../common/LayoutWrapper';
 import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
+type StyledProps = {
+	$isLarge?: boolean;
+};
+
 type Props = {
 	title: string;
+	isLarge?: boolean;
 };
 
 const PageHeroTitleWrapper = styled(motion.section)`
@@ -22,11 +27,20 @@ const Inner = styled.div`
 	}
 `;
 
-const Title = styled(motion.h2)``;
+const Title = styled(motion.h2)<StyledProps>`
+	font-size: ${(props) => props.$isLarge ? pxToRem(80) : pxToRem(45)};
+	line-height: ${(props) => props.$isLarge ? pxToRem(84) : pxToRem(55)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		font-size: ${(props) => props.$isLarge ? pxToRem(45) : pxToRem(25)};
+		line-height: ${(props) => props.$isLarge ? pxToRem(44) : pxToRem(26)};
+	}
+`;
 
 const PageHeroTitle = (props: Props) => {
 	const {
-		title
+		title,
+		isLarge = false
 	} = props;
 
 	const [windowHeight, setWindowHeight] = useState(0);
@@ -59,7 +73,10 @@ const PageHeroTitle = (props: Props) => {
 			<LayoutWrapper>
 				<Inner>
 					{title && (
-						<Title style={{ filter: blur }}>
+						<Title
+							style={{ filter: blur }}
+							$isLarge={isLarge}
+						>
 							{title}
 						</Title>
 					)}

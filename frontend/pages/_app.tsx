@@ -13,8 +13,8 @@ import useHeaderHeight from '../hooks/useHeaderHeight';
 import Cursor from '../components/elements/Cursor';
 
 const pageTransitionVariants: Transitions = {
-	hidden: { opacity: 0, transition: { duration: 0.3 } },
-	visible: { opacity: 1, transition: { duration: 0.3, delay: 0.25 } },
+	hidden: { opacity: 0, transition: { duration: 0.5 } },
+	visible: { opacity: 1, transition: { duration: 0.5, delay: 1 } },
 };
 
 type Props = {
@@ -32,10 +32,11 @@ const App = (props: Props) => {
 	const [appCursorRefresh, setAppCursorRefresh] = useState(0);
 	const [thumbnailData, setThumbnailData] = useState(null);
 
-	const router= useRouter();
+	const router = useRouter();
 	const routerEvents = router.events;
 
 	const handleExitComplete = (): void => {
+		setThumbnailData(null);
 		window.scrollTo(0, 0);
 
 		setTimeout(() => {

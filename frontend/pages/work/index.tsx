@@ -34,8 +34,6 @@ const Page = (props: Props) => {
 		setThumbnailData
 	} = props;
 
-	// const [thumbnailData, setThumbnailData] = useState(null);
-
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
@@ -60,9 +58,6 @@ const Page = (props: Props) => {
 				cursorRefresh={cursorRefresh}
 				setThumbnailData={setThumbnailData}
 			/>
-			{/* <ProjectThumbnail
-				data={thumbnailData}
-			/> */}
 		</PageWrapper>
 	);
 };
