@@ -26,7 +26,8 @@ const Page = (props: Props) => {
 	const {
 		data,
 		projects,
-		pageTransitionVariants
+		pageTransitionVariants,
+		cursorRefresh
 	} = props;
 
 	useEffect(() => {
@@ -48,7 +49,7 @@ const Page = (props: Props) => {
 				description={data?.seoDescription || ''}
 			/>
 			<PageHeroTitle title={data?.introHeading} />
-			<Projects data={projects} />
+			<Projects data={projects} cursorRefresh={cursorRefresh} />
 		</PageWrapper>
 	);
 };

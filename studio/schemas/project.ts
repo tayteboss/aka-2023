@@ -1,11 +1,14 @@
 import { CaseIcon } from '@sanity/icons';
+import { orderRankField, orderRankOrdering } from '@sanity/orderable-document-list';
 
 export default {
 	title: 'Project',
 	name: 'project',
 	type: 'document',
 	icon: CaseIcon,
+	orderings: [orderRankOrdering],
 	fields: [
+		orderRankField({ type: "project" }),
 		{
 			title: 'Title',
 			name: 'title',
@@ -28,19 +31,7 @@ export default {
 		{
 			title: "Summary",
 			name: "summary",
-			type: "array",
-			of: [
-				{
-					type: "block",
-					styles: [
-						{title: "Normal", value: "normal"},
-					],
-					lists: [],
-					marks: {
-						decorators: [],
-					}
-				}
-			]
+			type: "string"
 		},
 		{
 			title: "Scope",

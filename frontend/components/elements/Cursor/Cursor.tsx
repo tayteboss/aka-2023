@@ -12,6 +12,7 @@ type StyledProps = {
 	$isHoveringLink?: boolean;
 	$isOnDevice?: boolean;
 	$isHoveringLargeLink?: boolean;
+	$isMouseDown?: boolean;
 };
 
 const CursorWrapper = styled.div<StyledProps>`
@@ -36,10 +37,10 @@ const CursorRing = styled(motion.div)<StyledProps>`
 	flex-flow: row;
 	align-content: center;
 	justify-content: center;
-	top: ${props => props.$isHoveringLargeLink ? '-50px' : props.$isHoveringLink ? '-20px' : '-7px'};
-	left: ${props => props.$isHoveringLargeLink ? '-50px' : props.$isHoveringLink ? '-20px' : '-7px'};
-	height: ${props => props.$isHoveringLargeLink ? '100px' : props.$isHoveringLink ? '40px' : '15px'};
-	width: ${props => props.$isHoveringLargeLink ? '100px' : props.$isHoveringLink ? '40px' : '15px'};
+	top: ${props => props.$isHoveringLargeLink ? '-50px' : props.$isMouseDown ? '-15px' : props.$isHoveringLink ? '-20px' : '-7px'};
+	left: ${props => props.$isHoveringLargeLink ? '-50px' : props.$isMouseDown ? '-15px' : props.$isHoveringLink ? '-20px' : '-7px'};
+	height: ${props => props.$isHoveringLargeLink ? '100px' : props.$isMouseDown ? '30px' : props.$isHoveringLink ? '40px' : '15px'};
+	width: ${props => props.$isHoveringLargeLink ? '100px' : props.$isMouseDown ? '30px' : props.$isHoveringLink ? '40px' : '15px'};
 	background: ${(props) => props.$isHoveringLargeLink ? 'var(--colour-white)' : props.$isHoveringLink ? 'var(--colour-white)' : 'var(--colour-white)'};
 	border-radius: 50%;
 	mix-blend-mode: difference;
@@ -54,6 +55,7 @@ const Cursor = ({ cursorRefresh }: Props) => {
 	const [isHoveringLink, setIsHoveringLink] = useState(false);
 	const [isHoveringLargeLink, setIsHoveringLargeLink] = useState(false);
 	const [isOnDevice, setIsOnDevice] = useState(false);
+	const [isMouseDown, setIsMouseDown] = useState(false);
 	const position = useMousePosition();
 	const router = useRouter();
 
@@ -70,25 +72,6 @@ const Cursor = ({ cursorRefresh }: Props) => {
 				stiffness: 800,
 				damping: 20,
 				ease: 'linear'
-			}
-		}
-	};
-
-	const circleVariants = {
-		hidden: {
-			height: '0',
-			width: '0'
-		},
-		visible: {
-			height: '30px',
-			width: '30px',
-			transition: {
-				duration: 1.5,
-				ease: "easeInOut",
-				type: 'spring',
-				mass: 0.5,
-				stiffness: 800,
-				damping: 20,
 			}
 		}
 	};
@@ -111,6 +94,12 @@ const Cursor = ({ cursorRefresh }: Props) => {
 			link.addEventListener('mouseleave', () => {
 				setIsHoveringLink(false);
 			});
+			link.addEventListener('mousedown', () => {
+				setIsMouseDown(true);
+			});
+			link.addEventListener('mouseup', () => {
+				setIsMouseDown(false);
+			});
 		});
 
 		buttonTags.forEach((link) => {
@@ -120,6 +109,12 @@ const Cursor = ({ cursorRefresh }: Props) => {
 			link.addEventListener('mouseleave', () => {
 				setIsHoveringLink(false);
 			});
+			link.addEventListener('mousedown', () => {
+				setIsMouseDown(true);
+			});
+			link.addEventListener('mouseup', () => {
+				setIsMouseDown(false);
+			});
 		});
 
 		cursorLinks.forEach((link) => {
@@ -128,6 +123,12 @@ const Cursor = ({ cursorRefresh }: Props) => {
 			});
 			link.addEventListener('mouseleave', () => {
 				setIsHoveringLink(false);
+			});
+			link.addEventListener('mousedown', () => {
+				setIsMouseDown(true);
+			});
+			link.addEventListener('mouseup', () => {
+				setIsMouseDown(false);
 			});
 		});
 
@@ -167,6 +168,7 @@ const Cursor = ({ cursorRefresh }: Props) => {
 			<CursorRing
 				$isHoveringLink={isHoveringLink}
 				$isHoveringLargeLink={isHoveringLargeLink}
+				$isMouseDown={isMouseDown}
 				variants={variantsWrapper}
 				animate="visible"
 			>

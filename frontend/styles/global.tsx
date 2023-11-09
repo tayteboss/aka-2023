@@ -166,6 +166,23 @@ export const GlobalStyles = createGlobalStyle`
 		}
 	}
 
+	.view-element-image-scale-up
+	{
+		img  {
+			transform: scale(1.05) !important;
+
+			transition: all 5000ms ease;
+		}
+
+
+		&--in-view
+		{
+			img {
+				transform: scale(1) !important;
+			}
+		}
+	}
+
 	.view-element-scale-up
 	{
 		transform: scale(0.95);

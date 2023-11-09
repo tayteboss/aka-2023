@@ -42,6 +42,12 @@ const App = (props: Props) => {
 		}, 1000);
 	};
 
+	const handleCursorRefresh = (): void => {
+		setTimeout(() => {
+			setAppCursorRefresh(appCursorRefresh + 1);
+		}, 1000);
+	};
+
 	use1vh();
 	useHeaderHeight();
 
@@ -74,6 +80,7 @@ const App = (props: Props) => {
 							{...pageProps}
 							key={router.asPath}
 							pageTransitionVariants={pageTransitionVariants}
+							cursorRefresh={() => handleCursorRefresh()}
 						/>
 					</AnimatePresence>
 				</Layout>
