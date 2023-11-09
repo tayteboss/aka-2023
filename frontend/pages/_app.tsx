@@ -30,6 +30,7 @@ const App = (props: Props) => {
 
 	const [hasVisited, setHasVisited] = useState<boolean>(false);
 	const [appCursorRefresh, setAppCursorRefresh] = useState(0);
+	const [thumbnailData, setThumbnailData] = useState(null);
 
 	const router= useRouter();
 	const routerEvents = router.events;
@@ -81,11 +82,13 @@ const App = (props: Props) => {
 							key={router.asPath}
 							pageTransitionVariants={pageTransitionVariants}
 							cursorRefresh={() => handleCursorRefresh()}
+							setThumbnailData={setThumbnailData}
 						/>
 					</AnimatePresence>
 				</Layout>
 				<Cursor
 					cursorRefresh={() => setAppCursorRefresh(appCursorRefresh + 1)}
+					thumbnailData={thumbnailData}
 				/>
 			</ThemeProvider>
 		</>

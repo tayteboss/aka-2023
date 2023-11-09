@@ -72,14 +72,14 @@ const Header = () => {
 					<Link href="/" passHref scroll={false}>
 						<Logo>Aka Studio</Logo>
 					</Link>
-					<LinkWrapper $isActive={useActiveLink() === 'work'}>
+					<LinkWrapper $isActive={useActiveLink() === 'Work'}>
 						<Link href="/work" passHref scroll={false}>
 							<MenuTag>
 								Work
 							</MenuTag>
 						</Link>
 					</LinkWrapper>
-					<LinkWrapper $isActive={useActiveLink() === 'info'}>
+					<LinkWrapper $isActive={useActiveLink() === 'Info'}>
 						<Link href="/info" passHref scroll={false}>
 							<MenuTag>
 								Info

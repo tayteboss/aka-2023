@@ -11,6 +11,7 @@ import { AnimatePresence } from 'framer-motion';
 type Props = {
 	data: ProjectType[];
 	cursorRefresh: () => void;
+	setThumbnailData: (data: any) => void;
 };
 
 const ProjectsWrapper = styled.section`
@@ -27,7 +28,8 @@ const Inner = styled.div`
 const Projects = (props: Props) => {
 	const {
 		data,
-		cursorRefresh
+		cursorRefresh,
+		setThumbnailData
 	} = props;
 
 	const [galleryView, setGalleryView] = useState(true);
@@ -49,7 +51,11 @@ const Projects = (props: Props) => {
 							<ProjectsGalleryView data={data} key={1} />
 						)}
 						{!galleryView && (
-							<ProjectsListView data={data} key={2} />
+							<ProjectsListView
+								data={data}
+								key={2}
+								setThumbnailData={setThumbnailData}
+							/>
 						)}
 					</AnimatePresence>
 				</Inner>

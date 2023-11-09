@@ -87,7 +87,7 @@ const wrapperVariants = {
 	hidden: {
 		opacity: 0,
 		transition: {
-			duration: 0.3,
+			duration: 0,
 			ease: 'easeInOut',
 			when: 'afterChildren',
 			staggerChildren: 0.1
@@ -96,7 +96,7 @@ const wrapperVariants = {
 	visible: {
 		opacity: 1,
 		transition: {
-			duration: 0.3,
+			duration: 0,
 			ease: 'easeInOut',
 			when: 'beforeChildren',
 			staggerChildren: 0.1

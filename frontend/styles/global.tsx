@@ -37,7 +37,7 @@ export const GlobalStyles = createGlobalStyle`
 
 	html {
 		scroll-behavior: smooth;
-		background: ${theme.colours.white};
+		background: ${theme.colours.black};
 		font-size: 16px;
 
 		&.no-scroll {
@@ -57,6 +57,7 @@ export const GlobalStyles = createGlobalStyle`
 
 	body {
 		position: relative;
+		background: var(--colour-white);
 	}
 
 	input,

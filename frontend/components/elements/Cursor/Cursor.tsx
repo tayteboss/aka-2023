@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useMousePosition } from '../../../hooks/useMousePosition';
 import { useRouter } from 'next/router';
+import pxToRem from '../../../utils/pxToRem';
 
 type Props = {
-	cursorRefresh: number;
+	cursorRefresh: () => void;
+	thumbnailData: any;
 };
 
 type StyledProps = {
@@ -13,10 +15,12 @@ type StyledProps = {
 	$isOnDevice?: boolean;
 	$isHoveringLargeLink?: boolean;
 	$isMouseDown?: boolean;
+	$isThumbnail?: null | any;
+	$isDifference?: boolean;
 };
 
 const CursorWrapper = styled.div<StyledProps>`
-	mix-blend-mode: difference;
+	mix-blend-mode: ${(props) => props.$isDifference ? 'difference' : 'normal'};
 	height: 27px;
 	width: 27px;
 	z-index: 1000;
@@ -24,6 +28,7 @@ const CursorWrapper = styled.div<StyledProps>`
 	display: ${props => props.$isOnDevice ? 'none' : 'block'};
 
 	transition: opacity ${props => props.theme.transitionSpeed.default} ease;
+	transition-delay: 500ms;
 
 	@media ${props => props.theme.mediaBreakpoints.mobile}
 	{
@@ -37,13 +42,12 @@ const CursorRing = styled(motion.div)<StyledProps>`
 	flex-flow: row;
 	align-content: center;
 	justify-content: center;
-	top: ${props => props.$isHoveringLargeLink ? '-50px' : props.$isMouseDown ? '-15px' : props.$isHoveringLink ? '-20px' : '-7px'};
-	left: ${props => props.$isHoveringLargeLink ? '-50px' : props.$isMouseDown ? '-15px' : props.$isHoveringLink ? '-20px' : '-7px'};
-	height: ${props => props.$isHoveringLargeLink ? '100px' : props.$isMouseDown ? '30px' : props.$isHoveringLink ? '40px' : '15px'};
-	width: ${props => props.$isHoveringLargeLink ? '100px' : props.$isMouseDown ? '30px' : props.$isHoveringLink ? '40px' : '15px'};
-	background: ${(props) => props.$isHoveringLargeLink ? 'var(--colour-white)' : props.$isHoveringLink ? 'var(--colour-white)' : 'var(--colour-white)'};
-	border-radius: 50%;
-	mix-blend-mode: difference;
+	top: ${props => props.$isThumbnail ? '-100px' : props.$isHoveringLargeLink ? '-50px' : props.$isMouseDown ? '-15px' : props.$isHoveringLink ? '-20px' : '-7px'};
+	left: ${props => props.$isThumbnail ? '-100px' : props.$isHoveringLargeLink ? '-50px' : props.$isMouseDown ? '-15px' : props.$isHoveringLink ? '-20px' : '-7px'};
+	height: ${props => props.$isThumbnail ? '200px' : props.$isHoveringLargeLink ? '100px' : props.$isMouseDown ? '30px' : props.$isHoveringLink ? '40px' : '15px'};
+	width: ${props => props.$isThumbnail ? '200px' : props.$isHoveringLargeLink ? '100px' : props.$isMouseDown ? '30px' : props.$isHoveringLink ? '40px' : '15px'};
+	background: var(--colour-white);
+	border-radius: ${(props) => props.$isThumbnail ? '45px' : '50%'};
 	pointer-events: none;
 	text-align: center;
 	z-index: 2;
@@ -51,11 +55,48 @@ const CursorRing = styled(motion.div)<StyledProps>`
 	transition: height 300ms ease, width 300ms ease, background 200ms ease, top 300ms ease, left 300ms ease, border-radius 300ms ease;
 `;
 
-const Cursor = ({ cursorRefresh }: Props) => {
+const ImageWrapper = styled(motion.div)`
+	position: absolute;
+	inset: 0;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	border-radius: ${pxToRem(45)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: none;
+	}
+`;
+
+const Image = styled.img`
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+`;
+
+const imageVariants = {
+	hidden: {
+		opacity: 0,
+		transition: {
+			duration: 0.3,
+			ease: 'easeInOut'
+		}
+	},
+	visible: {
+		opacity: 1,
+		transition: {
+			duration: 0.3,
+			ease: 'easeInOut'
+		}
+	}
+};
+
+const Cursor = ({ cursorRefresh, thumbnailData }: Props) => {
 	const [isHoveringLink, setIsHoveringLink] = useState(false);
 	const [isHoveringLargeLink, setIsHoveringLargeLink] = useState(false);
 	const [isOnDevice, setIsOnDevice] = useState(false);
 	const [isMouseDown, setIsMouseDown] = useState(false);
+	const [isDifference, setIsDifference] = useState(true);
 	const position = useMousePosition();
 	const router = useRouter();
 
@@ -160,20 +201,46 @@ const Cursor = ({ cursorRefresh }: Props) => {
 		clearCursor();
 	}, [router.pathname, router.asPath, router.query.slug]);
 
+	useEffect(() => {
+		if (thumbnailData === null) {
+			setTimeout(() => {
+				setIsDifference(true);
+			}, 180);
+		} else {
+			setIsDifference(false);
+		}
+	}, [thumbnailData]);
+
 	return (
-		<CursorWrapper
-			$isOnDevice={isOnDevice}
-			className="cursor-wrapper"
-		>
-			<CursorRing
-				$isHoveringLink={isHoveringLink}
-				$isHoveringLargeLink={isHoveringLargeLink}
-				$isMouseDown={isMouseDown}
-				variants={variantsWrapper}
-				animate="visible"
+		<>
+			<CursorWrapper
+				$isOnDevice={isOnDevice}
+				$isDifference={isDifference}
+				className="cursor-wrapper"
 			>
-			</CursorRing>
-		</CursorWrapper>
+				<CursorRing
+					$isHoveringLink={isHoveringLink}
+					$isHoveringLargeLink={isHoveringLargeLink}
+					$isMouseDown={isMouseDown}
+					$isThumbnail={thumbnailData}
+					variants={variantsWrapper}
+					animate="visible"
+				>
+					<AnimatePresence>
+						{thumbnailData && (
+							<ImageWrapper
+								variants={imageVariants}
+								initial='hidden'
+								animate='visible'
+								exit='hidden'
+							>
+								<Image src="/images/hero-placeholder.jpg" />
+							</ImageWrapper>
+						)}
+					</AnimatePresence>
+				</CursorRing>
+			</CursorWrapper>
+		</>
 	);
 };
 

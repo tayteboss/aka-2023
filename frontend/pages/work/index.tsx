@@ -2,11 +2,12 @@ import styled from 'styled-components';
 import client from '../../client';
 import { motion } from 'framer-motion';
 import { ProjectType, Transitions } from '../../shared/types/types';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { projectsQueryString, workPageQueryString } from '../../queries';
 import { NextSeo } from 'next-seo';
 import PageHeroTitle from '../../components/blocks/PageHeroTitle';
 import Projects from '../../components/blocks/Projects';
+import ProjectThumbnail from '../../components/elements/ProjectThumbnail';
 
 const PageWrapper = styled(motion.div)`
 	background: var(--colour-white);
@@ -20,6 +21,8 @@ type Props = {
 	};
 	projects: ProjectType[];
 	pageTransitionVariants: Transitions;
+	cursorRefresh: () => void;
+	setThumbnailData: (data: any) => void;
 };
 
 const Page = (props: Props) => {
@@ -27,8 +30,11 @@ const Page = (props: Props) => {
 		data,
 		projects,
 		pageTransitionVariants,
-		cursorRefresh
+		cursorRefresh,
+		setThumbnailData
 	} = props;
+
+	// const [thumbnailData, setThumbnailData] = useState(null);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -49,7 +55,14 @@ const Page = (props: Props) => {
 				description={data?.seoDescription || ''}
 			/>
 			<PageHeroTitle title={data?.introHeading} />
-			<Projects data={projects} cursorRefresh={cursorRefresh} />
+			<Projects
+				data={projects}
+				cursorRefresh={cursorRefresh}
+				setThumbnailData={setThumbnailData}
+			/>
+			{/* <ProjectThumbnail
+				data={thumbnailData}
+			/> */}
 		</PageWrapper>
 	);
 };
