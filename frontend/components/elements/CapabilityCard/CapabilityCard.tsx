@@ -122,7 +122,7 @@ const CapabilityCard = (props: CapabilityType) => {
 
 	return (
 		<CapabilityCardWrapper
-			className="capability-card"
+			className="capability-card cursor-link"
 			onMouseOver={() => setIsHovered(true)}
 			onMouseOut={() => setIsHovered(false)}
 			ref={ref}
@@ -135,7 +135,9 @@ const CapabilityCard = (props: CapabilityType) => {
 					{handleIndex(index)}
 				</Index>
 				{title && (
-					<Title style={{ opacity, transform: xTranslate }}>
+					<Title
+						style={{ opacity, transform: xTranslate }}
+					>
 						{title}
 					</Title>
 				)}

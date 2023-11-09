@@ -10,6 +10,7 @@ import { GlobalStyles } from '../styles/global';
 import use1vh from '../hooks/use1vh';
 import { Transitions } from '../shared/types/types';
 import useHeaderHeight from '../hooks/useHeaderHeight';
+import Cursor from '../components/elements/Cursor';
 
 const pageTransitionVariants: Transitions = {
 	hidden: { opacity: 0, transition: { duration: 0.3 } },
@@ -28,12 +29,17 @@ const App = (props: Props) => {
 	} = props;
 
 	const [hasVisited, setHasVisited] = useState<boolean>(false);
+	const [appCursorRefresh, setAppCursorRefresh] = useState(0);
 
 	const router= useRouter();
 	const routerEvents = router.events;
 
 	const handleExitComplete = (): void => {
 		window.scrollTo(0, 0);
+
+		setTimeout(() => {
+			setAppCursorRefresh(appCursorRefresh + 1);
+		}, 1000);
 	};
 
 	use1vh();
@@ -71,6 +77,9 @@ const App = (props: Props) => {
 						/>
 					</AnimatePresence>
 				</Layout>
+				<Cursor
+					cursorRefresh={() => setAppCursorRefresh(appCursorRefresh + 1)}
+				/>
 			</ThemeProvider>
 		</>
 	);

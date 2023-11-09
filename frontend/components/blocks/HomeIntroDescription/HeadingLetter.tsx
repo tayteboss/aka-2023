@@ -39,7 +39,7 @@ const HeadingLetter = ({ letter }: Props) => {
 
 	return (
 		<HeadingLetterWrapper
-			className="type-h1"
+			className="type-h1 cursor-link--large"
 			onMouseOver={() => setHasHovered(true)}
 			$hasHovered={hasHovered}
 		>

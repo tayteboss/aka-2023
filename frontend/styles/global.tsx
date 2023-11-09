@@ -47,6 +47,12 @@ export const GlobalStyles = createGlobalStyle`
 				overflow-y: hidden;
 			}
 		}
+
+		cursor: none !important;
+
+		* {
+			cursor: none !important;
+		}
 	}
 
 	body {

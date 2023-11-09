@@ -41,7 +41,7 @@ const Title = styled.h3`
 
 const LinkTag = styled.a``;
 
-const ContentWrapper = styled.div`
+const ContentWrapper = styled.a`
 	* {
 		font-size: ${pxToRem(45)};
 		line-height: ${pxToRem(55)};
