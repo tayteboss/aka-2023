@@ -70,7 +70,6 @@ const ScopeWrapper = styled.div`
 	position: absolute;
 	top: ${pxToRem(32)};
 	left: ${pxToRem(32)};
-	mix-blend-mode: difference;
 	padding-right: ${pxToRem(32)};
 `;
 
@@ -78,7 +77,7 @@ const Scope = styled.span`
 	color: var(--colour-white);
 	font-size: ${pxToRem(18)};
 	line-height: normal;
-	opacity: 0.5;
+	opacity: 0.75;
 `;
 
 const childVariants = {
