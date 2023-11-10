@@ -65,7 +65,7 @@ const Capabilities = (props: Props) => {
 					/>
 				))}
 			</LayoutWrapper>
-			<Divider />
+			<Divider className="capabilities__divider" />
 		</CapabilitiesWrapper>
 	);
 };
