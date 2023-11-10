@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { NextSeo } from 'next-seo';
 import PageHeroTitle from '../../components/blocks/PageHeroTitle';
 import ProjectDetails from '../../components/blocks/ProjectDetails';
+import ProjectGallery from '../../components/blocks/ProjectGallery';
 
 type Props = {
 	data: ProjectType;
@@ -45,6 +46,12 @@ const Page = (props: Props) => {
 				scope={data?.scope}
 				status={data?.status}
 				description={data?.description}
+			/>
+			<ProjectGallery
+				data={data?.imageGallery}
+			/>
+			<ProjectCredits
+				data={data?.credits}
 			/>
 		</PageWrapper>
 	);
