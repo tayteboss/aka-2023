@@ -8,13 +8,18 @@ import { NextSeo } from 'next-seo';
 import PageHeroTitle from '../../components/blocks/PageHeroTitle';
 import ProjectDetails from '../../components/blocks/ProjectDetails';
 import ProjectGallery from '../../components/blocks/ProjectGallery';
+import ProjectCredits from '../../components/blocks/ProjectCredits';
+import pxToRem from '../../utils/pxToRem';
 
 type Props = {
 	data: ProjectType;
 	pageTransitionVariants: Transitions;
 }
 
-const PageWrapper = styled(motion.div)``;
+const PageWrapper = styled(motion.div)`
+	background: var(--colour-white);
+	padding-bottom: ${pxToRem(60)};
+`;
 
 const Page = (props: Props) => {
 	const {

@@ -33,6 +33,10 @@ const SummaryCol = styled.div`
 const Heading = styled.h4`
 	margin-bottom: ${pxToRem(16)};
 	opacity: 0.5;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		margin-bottom: ${pxToRem(10)};
+	}
 `;
 
 const String = styled.p``;

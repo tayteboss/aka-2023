@@ -17,6 +17,10 @@ const ProjectDetailsWrapper = styled.section`
 	padding: ${pxToRem(24)} 0 ${pxToRem(200)};
 	position: relative;
 	z-index: 5;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding: ${pxToRem(24)} 0 ${pxToRem(100)};
+	}
 `;
 
 const ProjectDetails = (props: Props) => {

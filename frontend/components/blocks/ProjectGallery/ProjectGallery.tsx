@@ -6,7 +6,7 @@ type Props = {
 	data: any;
 };
 
-const ProjectGalleryWrapper = styled.div``;
+const ProjectGalleryWrapper = styled.section``;
 
 const Inner = styled.div``;
 
