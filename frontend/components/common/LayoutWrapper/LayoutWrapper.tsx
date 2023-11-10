@@ -13,8 +13,8 @@ const Wrapper = styled.div`
 	padding-right: ${pxToRem(45)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		padding-left: ${pxToRem(20)};
-		padding-right: ${pxToRem(20)};
+		padding-left: ${pxToRem(16)};
+		padding-right: ${pxToRem(16)};
 	}
 `;
 

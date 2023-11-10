@@ -2,27 +2,35 @@ import styled from 'styled-components';
 import { NextSeo } from 'next-seo';
 import client from '../client';
 import { homePageQueryString, siteSettingsQueryString } from '../queries';
-import { HomePageType, SiteSettingsType } from '../shared/types/types';
+import { HomePageType, SiteSettingsType, Transitions } from '../shared/types/types';
 import HomeFooter from '../components/blocks/HomeFooter';
 import Capabilities from '../components/blocks/Capabilities';
 import HomeIntroDescription from '../components/blocks/HomeIntroDescription';
 import HomeHeroMedia from '../components/blocks/HomeHeroMedia';
+import { motion } from 'framer-motion';
 
-const PageWrapper = styled.div``;
+const PageWrapper = styled(motion.div)``;
 
 type Props = {
 	data: HomePageType;
 	siteSettings: SiteSettingsType;
+	pageTransitionVariants: Transitions;
 };
 
 const Page = (props: Props) => {
 	const {
 		data,
-		siteSettings
+		siteSettings,
+		pageTransitionVariants
 	} = props;
 
 	return (
-		<PageWrapper>
+		<PageWrapper
+			variants={pageTransitionVariants}
+			initial='hidden'
+			animate='visible'
+			exit='hidden'
+		>
 			<NextSeo
 				title={data?.seoTitle || 'Aka'}
 				description={data?.seoDescription || ''}

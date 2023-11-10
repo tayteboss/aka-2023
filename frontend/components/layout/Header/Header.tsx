@@ -29,6 +29,10 @@ const Logo = styled.a`
 	font-size: ${pxToRem(22)};
 	line-height: normal;
 	color: var(--colour-white);
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		font-size: ${pxToRem(16)};
+	}
 `;
 
 const LinkWrapper = styled.div<StyledProps>`
@@ -62,6 +66,10 @@ const MenuTag = styled.a`
 	line-height: normal;
 	position: relative;
 	color: var(--colour-white);
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		font-size: ${pxToRem(16)};
+	}
 `;
 
 const Header = () => {
