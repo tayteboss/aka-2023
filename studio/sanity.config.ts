@@ -13,7 +13,7 @@ export default defineConfig({
   title: 'Aka',
 
   projectId: 'srqhq3ai',
-  dataset: 'production',
+  dataset: 'production-v2',
 
   plugins: [
     deskTool({

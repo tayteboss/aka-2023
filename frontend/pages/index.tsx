@@ -35,7 +35,10 @@ const Page = (props: Props) => {
 				title={data?.seoTitle || 'Aka'}
 				description={data?.seoDescription || ''}
 			/>
-			<HomeHeroMedia />
+			<HomeHeroMedia
+				desktopMedia={siteSettings?.desktopLandingMedia}
+				mobileMedia={siteSettings?.mobileLandingMedia}
+			/>
 			<HomeIntroDescription data={data?.introHeading} />
 			<Capabilities data={data?.capabilities} />
 			<HomeFooter

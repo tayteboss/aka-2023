@@ -21,7 +21,6 @@ const GalleryCard = (props: Props) => {
 		data
 	} = props;
 
-	console.log('data', data);
 	const { ref, inView } = useInView({
 		triggerOnce: true,
 		threshold: 0.2,

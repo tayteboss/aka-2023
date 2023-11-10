@@ -1,7 +1,12 @@
+import MuxPlayer from '@mux/mux-player-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { SassString } from 'sass';
 import styled from 'styled-components';
+
+type Props = {
+	desktopMedia: any;
+	mobileMedia: any;
+};
 
 const HomeHeroMediaWrapper = styled.section`
 	height: 100vh;
@@ -10,18 +15,42 @@ const HomeHeroMediaWrapper = styled.section`
 	top: 0;
 	left: 0;
 	z-index: 1;
+
+	mux-player {
+		height: 100%;
+		width: 100%;
+	}
 `;
 
-const Inner = styled(motion.div)`
+const DesktopInner = styled(motion.div)`
 	height: 100%;
 	width: 100%;
-	background-image: url('/images/hero-placeholder.jpg');
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
+	position: relative;
+	overflow: hidden;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: none;
+	}
 `;
 
-const HomeHeroMedia = () => {
+const MobileInner = styled(motion.div)`
+	height: 100%;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	display: none;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: block;
+	}
+`;
+
+const HomeHeroMedia = (props: Props) => {
+	const {
+		desktopMedia,
+		mobileMedia
+	} = props;
+
 	const [windowHeight, setWindowHeight] = useState(0);
 
 	const ref = useRef<HTMLDivElement>(null);
@@ -46,9 +75,38 @@ const HomeHeroMedia = () => {
 
 	return (
 		<HomeHeroMediaWrapper ref={ref}>
-			<Inner
+			<DesktopInner
 				style={{ filter: blur, scale }}
-			/>
+			>
+				{desktopMedia?.playbackId && (
+					<MuxPlayer
+						streamType="on-demand"
+						playbackId={desktopMedia.playbackId}
+						autoPlay="muted"
+						loop={true}
+						thumbnailTime={0}
+						preload="auto"
+						muted
+						playsInline={true}
+					/>
+				)}
+			</DesktopInner>
+			<MobileInner
+				style={{ filter: blur, scale }}
+			>
+				{mobileMedia?.playbackId && (
+					<MuxPlayer
+						streamType="on-demand"
+						playbackId={mobileMedia.playbackId}
+						autoPlay="muted"
+						loop={true}
+						thumbnailTime={0}
+						preload="auto"
+						muted
+						playsInline={true}
+					/>
+				)}
+			</MobileInner>
 		</HomeHeroMediaWrapper>
 	);
 };

@@ -3,6 +3,7 @@ import pxToRem from '../../../utils/pxToRem';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
+import MuxPlayer from '@mux/mux-player-react';
 
 type Props = {
 	title: string;
@@ -10,10 +11,16 @@ type Props = {
 	status: string;
 	slug: { current: string };
 	scope: string[];
+	thumbnailMedia: any;
 	setIsHovered: (isHovered: boolean) => void;
 };
 
 const ProjectGalleryCardWrapper = styled(motion.a)`
+	mux-player {
+		height: 100%;
+		width: 100%;
+	}
+
 	&:hover {
 		.project-gallery-card__image-wrapper {
 			border-radius: ${pxToRem(20)};
@@ -29,7 +36,7 @@ const Inner = styled.div`
 	transition: filter 500ms var(--transition-ease);
 `;
 
-const ImageWrapper = styled.div`
+const ThumbnailWrapper = styled.div`
 	width: 100%;
 	position: relative;
 	border-radius: ${pxToRem(45)};
@@ -39,12 +46,11 @@ const ImageWrapper = styled.div`
 	transition: border-radius 500ms var(--transition-ease);
 `;
 
-const Image = styled.div`
+const ThumbnailInner = styled.div`
 	position: absolute;
 	inset: 0;
 	height: 100%;
 	width: 100%;
-	background: orange;
 `;
 
 const Title = styled.h2`
@@ -99,6 +105,7 @@ const ProjectGalleryCard = (props: Props) => {
 		status,
 		slug,
 		scope,
+		thumbnailMedia,
 		setIsHovered,
 	} = props;
 
@@ -120,12 +127,25 @@ const ProjectGalleryCard = (props: Props) => {
 				variants={childVariants}
 			>
 				<Inner className="project-gallery-card__inner">
-					<ImageWrapper
+					<ThumbnailWrapper
 						className={`project-gallery-card__image-wrapper view-element-image-scale-up ${
 							inView ? 'view-element-image-scale-up--in-view' : ''
 						}`}
 					>
-						<Image />
+						{thumbnailMedia?.asset?.playbackId && (
+							<ThumbnailInner>
+								<MuxPlayer
+									streamType="on-demand"
+									playbackId={thumbnailMedia.asset.playbackId}
+									autoPlay="muted"
+									loop={true}
+									thumbnailTime={0}
+									preload="auto"
+									muted
+									playsInline={true}
+								/>
+							</ThumbnailInner>
+						)}
 						{hasScope && (
 							<ScopeWrapper>
 								{scope.map((item, i) => (
@@ -135,7 +155,7 @@ const ProjectGalleryCard = (props: Props) => {
 								))}
 							</ScopeWrapper>
 						)}
-					</ImageWrapper>
+					</ThumbnailWrapper>
 					{title && (
 						<Title>{title}</Title>
 					)}

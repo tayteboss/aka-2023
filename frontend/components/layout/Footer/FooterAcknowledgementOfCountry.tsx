@@ -13,10 +13,10 @@ const FooterAcknowledgementOfCountryWrapper = styled.div`
 	padding: ${pxToRem(30)} 0;
 	z-index: 1;
 	background: var(--colour-white);
+	opacity: 0.5;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: ${pxToRem(64)} 0;
-		opacity: 0.5;
 	}
 `;
 

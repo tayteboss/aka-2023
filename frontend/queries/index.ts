@@ -1,6 +1,8 @@
 export const siteSettingsQueryString = `
 	*[_type == 'siteSettings'][0] {
 		...,
+		"desktopLandingMedia": desktopLandingMedia.asset->,
+		"mobileLandingMedia": mobileLandingMedia.asset->,
 	}
 `;
 

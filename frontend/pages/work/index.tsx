@@ -7,7 +7,6 @@ import { projectsQueryString, workPageQueryString } from '../../queries';
 import { NextSeo } from 'next-seo';
 import PageHeroTitle from '../../components/blocks/PageHeroTitle';
 import Projects from '../../components/blocks/Projects';
-import ProjectThumbnail from '../../components/elements/ProjectThumbnail';
 
 const PageWrapper = styled(motion.div)`
 	background: var(--colour-white);
@@ -37,9 +36,6 @@ const Page = (props: Props) => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
-
-	console.log('data', data);
-	console.log('projects', projects);
 
 	return (
 		<PageWrapper

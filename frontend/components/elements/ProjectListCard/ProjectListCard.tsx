@@ -160,19 +160,13 @@ const ProjectListCard = (props: Props) => {
 
 	const handleMouseOver = () => {
 		setIsHovered(true);
-		setThumbnailData('orange');
+		setThumbnailData(thumbnailMedia?.asset?.playbackId);
 	};
 
 	const handleMouseOut = () => {
 		setIsHovered(false);
 		setThumbnailData(null);
 	};
-
-	// const dividerWidth = useTransform(
-	// 	scrollY,
-	// 	[distanceToTop - windowHeight, (distanceToTop - windowHeight) + (windowHeight * 0.5)],
-	// 	['0%', '100%']
-	// );
 
 	const opacity = useTransform(
 		scrollY,

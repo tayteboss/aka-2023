@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useMousePosition } from '../../../hooks/useMousePosition';
 import { useRouter } from 'next/router';
 import pxToRem from '../../../utils/pxToRem';
+import MuxPlayer from '@mux/mux-player-react';
 
 type Props = {
 	cursorRefresh: () => void;
@@ -66,12 +67,13 @@ const ImageWrapper = styled(motion.div)`
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		display: none;
 	}
-`;
 
-const Image = styled.img`
-	object-fit: cover;
-	height: 100%;
-	width: 100%;
+	mux-player,
+	img {
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+	}
 `;
 
 const imageVariants = {
@@ -234,7 +236,20 @@ const Cursor = ({ cursorRefresh, thumbnailData }: Props) => {
 								animate='visible'
 								exit='hidden'
 							>
-								<Image src="/images/hero-placeholder.jpg" />
+								{/* <MuxPlayer
+									streamType="on-demand"
+									playbackId={thumbnailData}
+									autoPlay="muted"
+									loop={true}
+									thumbnailTime={0}
+									preload="auto"
+									muted
+									playsInline={true}
+								/> */}
+								<img
+									src={`https://image.mux.com/${thumbnailData}/animated.webp`}
+									loading="eager"
+								/>
 							</ImageWrapper>
 						)}
 					</AnimatePresence>

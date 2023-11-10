@@ -30,6 +30,14 @@ export const GlobalStyles = createGlobalStyle`
 		font-weight: 100;
 	}
 
+	mux-player {
+		--media-object-fit: contain;
+		--media-object-position: center;
+		--controls: none;
+		--media-object-fit: cover;
+		--media-object-position: center;
+	}
+
 	::selection {
 		background-color: white;
 		color: red;
