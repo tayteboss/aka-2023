@@ -55,6 +55,22 @@ export default defineConfig({
                 .schemaType('workPage')
                 .documentId('workPage')
             ),
+          S.listItem()
+            .title('Terms Page')
+            .icon(DocumentIcon)
+            .child(
+              S.editor()
+                .schemaType('termsPage')
+                .documentId('termsPage')
+            ),
+          S.listItem()
+            .title('Privacy Page')
+            .icon(DocumentIcon)
+            .child(
+              S.editor()
+                .schemaType('privacyPage')
+                .documentId('privacyPage')
+            ),
           S.divider(),
           S.listItem()
             .title('Projects')

@@ -4,6 +4,9 @@ import infoPage from "./infoPage";
 import project from "./project";
 import workPage from "./workPage";
 import capability from "./capability";
+import privacyPage from "./privacyPage";
+import termsPage from "./termsPage";
+import points from "./points";
 
 export const schemaTypes = [
 	siteSettings,
@@ -11,5 +14,8 @@ export const schemaTypes = [
 	infoPage,
 	project,
 	workPage,
-	capability
+	capability,
+	privacyPage,
+	termsPage,
+	points
 ]

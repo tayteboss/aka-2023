@@ -21,6 +21,24 @@ export const infoPageQueryString = `
 	}
 `;
 
+export const termsPageQueryString = `
+	*[_type == 'termsPage'][0] {
+		...,
+		"points": points[]->{
+			...
+		},
+	}
+`;
+
+export const privacyPageQueryString = `
+	*[_type == 'privacyPage'][0] {
+		...,
+		"points": points[]->{
+			...
+		},
+	}
+`;
+
 export const workPageQueryString = `
 	*[_type == 'workPage'][0] {
 		...,

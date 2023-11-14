@@ -239,8 +239,8 @@ const FooterLinks = (props: Props) => {
 					</SocialCol>
 					<MiscCol>
 						<ColInner>
-							<MiscLink href="/privacy-policy">Privacy Policy</MiscLink>
-							<MiscLink href="/terms-and-conditions">Terms & Conditions</MiscLink>
+							<MiscLink href="/privacy">Privacy Policy</MiscLink>
+							<MiscLink href="/terms">Terms & Conditions</MiscLink>
 						</ColInner>
 					</MiscCol>
 				</LayoutGrid>
