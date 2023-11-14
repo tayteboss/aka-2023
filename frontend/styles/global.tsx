@@ -148,6 +148,12 @@ export const GlobalStyles = createGlobalStyle`
 		line-height: normal;
 	}
 
+	.content {
+		p {
+			margin-bottom: ${pxToRem(16)};
+		}
+	}
+
 	.view-element-fade-in
 	{
 		opacity: 0;

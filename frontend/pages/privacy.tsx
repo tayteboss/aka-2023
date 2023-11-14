@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import client from '../client';
-import { termsPageQueryString } from '../queries';
+import { privacyPageQueryString, termsPageQueryString } from '../queries';
 import { motion } from 'framer-motion';
 import { NextSeo } from 'next-seo';
 import PageHeroTitle from '../components/blocks/PageHeroTitle';
@@ -46,7 +46,7 @@ const Page = (props: Props) => {
 };
 
 export async function getStaticProps() {
-	const data = await client.fetch(termsPageQueryString);
+	const data = await client.fetch(privacyPageQueryString);
 
 	return {
 		props: {
