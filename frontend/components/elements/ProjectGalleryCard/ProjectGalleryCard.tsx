@@ -117,7 +117,7 @@ const ProjectGalleryCard = (props: Props) => {
 	});
 
 	return (
-		<Link href={`/work/${slug.current}`} passHref scroll={false}>
+		<Link href={`/works/${slug.current}`} passHref scroll={false}>
 			<ProjectGalleryCardWrapper
 				className="project-gallery-card"
 				onMouseOver={() => setIsHovered(true)}

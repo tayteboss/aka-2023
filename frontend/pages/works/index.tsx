@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import client from '../../client';
 import { motion } from 'framer-motion';
 import { ProjectType, Transitions } from '../../shared/types/types';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { projectsQueryString, workPageQueryString } from '../../queries';
 import { NextSeo } from 'next-seo';
 import PageHeroTitle from '../../components/blocks/PageHeroTitle';

@@ -189,7 +189,7 @@ const ProjectListCard = (props: Props) => {
 	}, [distanceToTop]);
 
 	return (
-		<Link href={`/work/${slug.current}`} passHref scroll={false}>
+		<Link href={`/works/${slug.current}`} passHref scroll={false}>
 			<ProjectListCardWrapper
 				variants={childVariants}
 				onMouseOver={() => handleMouseOver()}

@@ -68,7 +68,7 @@ export async function getStaticPaths() {
 
 	return {
 		paths: allCaseStudies.map((item: any) => {
-			return `/work/${item?.slug?.current}`;
+			return `/works/${item?.slug?.current}`;
 		}),
 		fallback: true
 	};
