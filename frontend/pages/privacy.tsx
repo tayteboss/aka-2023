@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import client from '../client';
-import { privacyPageQueryString, termsPageQueryString } from '../queries';
+import { privacyPageQueryString } from '../queries';
 import { motion } from 'framer-motion';
 import { NextSeo } from 'next-seo';
 import PageHeroTitle from '../components/blocks/PageHeroTitle';
