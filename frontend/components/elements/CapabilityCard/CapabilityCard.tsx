@@ -30,6 +30,7 @@ const Index = styled(motion.p)`
 
 const Title = styled(motion.h2)`
 	grid-column: 2 / 8;
+	transform-origin: center left;
 `;
 
 const Description = styled(motion.h3)`
@@ -108,8 +109,8 @@ const CapabilityCard = (props: CapabilityType) => {
 
 	const xTranslate = useTransform(
 		scrollY,
-		[distanceToTop - windowHeight, distanceToTop],
-		['translateX(-10px)', 'translateX(0px)']
+		[distanceToTop - windowHeight, distanceToTop + windowHeight],
+		['translateX(-10px) scale(0.8)', 'translateX(0px) scale(1)']
 	);
 
 	useEffect(() => {

@@ -10,26 +10,10 @@ type Props = {
 }
 
 const HomeIntroDescriptionWrapper = styled(motion.section)`
-	margin-top: calc(100vh + 150px);
-	margin-top: calc(100dvh + 150px);
 	position: relative;
 	z-index: 5;
-`;
-
-const BlurPanel = styled(motion.div)`
-	position: absolute;
-	top: -100px;
-	left: -25vw;
-	height: 100%;
-	width: 150vw;
-	z-index: 1;
 	background: var(--colour-white);
-`;
-
-const Outer = styled.div`
-	position: relative;
-	z-index: 2;
-	background: var(--colour-white);
+	margin-top: 100vh;
 `;
 
 const Inner = styled.div`
@@ -40,7 +24,7 @@ const Inner = styled.div`
 	}
 `;
 
-const Heading = styled.div`
+const Heading = styled(motion.div)`
 	color: var(--colour-white);
 	mix-blend-mode: difference;
 `;
@@ -59,7 +43,7 @@ const HomeIntroDescription = (props: Props) => {
 	const blur = useTransform(
 		scrollY,
 		[0, windowHeight],
-		['blur(50px)', 'blur(0px)']
+		['blur(20px)', 'blur(0px)']
 	);
 
 	useEffect(() => {
@@ -69,14 +53,11 @@ const HomeIntroDescription = (props: Props) => {
 	const dataArray = data.split('');
 
 	return (
-		<HomeIntroDescriptionWrapper
-			ref={ref}
-		>
-			<Outer>
+		<HomeIntroDescriptionWrapper ref={ref}>
 				<LayoutWrapper>
 					<Inner>
 						{data && (
-							<Heading>
+							<Heading style={{ filter: blur }}>
 								{dataArray.map((letter: string, i: number) => (
 									<HeadingLetter letter={letter} key={i} />
 								))}
@@ -84,8 +65,6 @@ const HomeIntroDescription = (props: Props) => {
 						)}
 					</Inner>
 				</LayoutWrapper>
-			</Outer>
-			<BlurPanel style={{ filter: blur }} />
 		</HomeIntroDescriptionWrapper>
 	);
 };
