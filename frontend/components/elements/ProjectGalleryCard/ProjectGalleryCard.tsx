@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 import MuxPlayer from '@mux/mux-player-react';
+import Image from 'next/image';
 
 type Props = {
 	title: string;
@@ -12,6 +13,7 @@ type Props = {
 	slug: { current: string };
 	scope: string[];
 	thumbnailMedia: any;
+	thumbnailImage: any;
 	setIsHovered: (isHovered: boolean) => void;
 };
 
@@ -30,6 +32,10 @@ const ProjectGalleryCardWrapper = styled(motion.a)`
 			filter: blur(0px) !important;
 		}
 	}
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		filter: blur(0px) !important;
+	}
 `;
 
 const Inner = styled.div`
@@ -47,6 +53,13 @@ const ThumbnailWrapper = styled.div`
 `;
 
 const ThumbnailInner = styled.div`
+	position: absolute;
+	inset: 0;
+	height: 100%;
+	width: 100%;
+`;
+
+const ImageInner = styled.div`
 	position: absolute;
 	inset: 0;
 	height: 100%;
@@ -105,6 +118,7 @@ const ProjectGalleryCard = (props: Props) => {
 		slug,
 		scope,
 		thumbnailMedia,
+		thumbnailImage,
 		setIsHovered,
 	} = props;
 
@@ -115,6 +129,9 @@ const ProjectGalleryCard = (props: Props) => {
 		threshold: 0.2,
 		rootMargin: '-50px'
 	});
+
+	console.log('thumbnailImage', thumbnailImage);
+	
 
 	return (
 		<Link href={`/works/${slug.current}`} passHref scroll={false}>
@@ -131,7 +148,7 @@ const ProjectGalleryCard = (props: Props) => {
 							inView ? 'view-element-image-scale-up--in-view' : ''
 						}`}
 					>
-						{thumbnailMedia?.asset?.playbackId && (
+						{thumbnailMedia?.asset?.playbackId ? (
 							<ThumbnailInner>
 								<MuxPlayer
 									streamType="on-demand"
@@ -144,11 +161,23 @@ const ProjectGalleryCard = (props: Props) => {
 									playsInline={true}
 								/>
 							</ThumbnailInner>
+						) : (
+							<>
+								{thumbnailImage?.asset?.url && (
+									<ImageInner>
+										<Image
+											src={thumbnailImage.asset.url}
+											layout="fill"
+											objectFit="cover"
+										/>
+									</ImageInner>
+								)}
+							</>
 						)}
 						{hasScope && (
 							<ScopeWrapper>
 								{scope.map((item, i) => (
-									<Scope>
+									<Scope key={i}>
 										{item}{i !== scope.length - 1 ? ' | ' : ''}
 									</Scope>
 								))}

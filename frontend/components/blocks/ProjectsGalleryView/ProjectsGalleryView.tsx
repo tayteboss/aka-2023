@@ -130,6 +130,7 @@ const ProjectsGalleryView = (props: Props) => {
 						slug={item.slug}
 						scope={item.scope}
 						thumbnailMedia={item.thumbnailMedia}
+						thumbnailImage={item.thumbnailImage}
 						key={i}
 						setIsHovered={setIsHovered}
 					/>

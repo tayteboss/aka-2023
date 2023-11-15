@@ -68,4 +68,5 @@ export type ProjectType = {
 	status: string;
 	summary: string;
 	thumbnailMedia: any;
+	thumbnailImage: any;
 }

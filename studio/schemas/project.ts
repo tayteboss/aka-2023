@@ -71,6 +71,12 @@ export default {
 			type: "mux.video"
 		},
 		{
+			title: "Thumbnail Image",
+			name: "thumbnailImage",
+			type: "image",
+			description: "Please only use Media or Image for the thumbnail, not both."
+		},
+		{
 			title: "Image Gallery",
 			name: "imageGallery",
 			type: "array",

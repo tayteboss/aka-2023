@@ -55,5 +55,6 @@ export const projectsQueryString = `
 	*[_type == 'project'] | order(orderRank) [0...100] {
 		...,
 		thumbnailMedia{asset->},
+		thumbnailImage{asset->},
 	}
 `;
