@@ -77,14 +77,55 @@ export default {
 			description: "Please only use Media or Image for the thumbnail, not both."
 		},
 		{
-			title: "Image Gallery",
-			name: "imageGallery",
-			type: "array",
+			name: 'imageGallery',
+			title: 'Image Gallery',
+			type: 'array',
 			of: [
 				{
-					type: "image"
-				}
-			]
+					type: 'object',
+					name: 'imageBlock',
+					title: 'Image Block',
+					fields: [
+						{
+							name: 'imageType',
+							title: 'Image Type',
+							type: 'string',
+							options: {
+								list: ['Single Image', 'Two Images Side by Side', 'Video'],
+							},
+						},
+						{
+							name: 'singleImage',
+							title: 'Single Image',
+							type: 'image',
+							description: 'Select a single image',
+							hidden: ({ parent }) => parent?.imageType !== 'Single Image',
+						},
+						{
+							name: 'twoImages',
+							title: 'Two Images',
+							type: 'array',
+							of: [{ type: 'image' }],
+							description: 'Select two images to display side by side',
+							hidden: ({ parent }) => parent?.imageType !== 'Two Images Side by Side',
+							validation: (Rule) =>
+								Rule.custom((images) => {
+								if (images && images.length !== 2) {
+									return 'You must select exactly two images for Two Images Side by Side.';
+								}
+									return true;
+								}),
+						},
+						{
+							title: 'Video',
+							name: 'video',
+							type: 'mux.video',
+							description: 'Select a video',
+							hidden: ({ parent }) => parent?.imageType !== 'Video',
+						},
+					],
+				},
+			],
 		},
 		{
 			title: "Credits",

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import LayoutWrapper from '../../common/LayoutWrapper';
-import GalleryCard from './GalleryCard';
+import GallerySingleImage from './GallerySingleImage';
+import GalleryPairImage from './GalleryPairImage';
+import GalleryVideo from './GalleryVideo';
 
 type Props = {
 	data: any;
@@ -21,12 +23,37 @@ const ProjectGallery = (props: Props) => {
 		<ProjectGalleryWrapper>
 			<LayoutWrapper>
 				<Inner>
-					{hasData && data.map((item: any, i: number) => (
-						<GalleryCard
-							data={item}
-							key={i}
-						/>
-					))}
+					{hasData && data.map((item: any, i: number) => {
+						const isSingleImage = item.singleImageUrl
+						const isPairImage = item.twoImagesUrls
+						const isVideo = item.video
+
+						console.log('item', item);
+						
+
+						return (
+							<>
+								{isSingleImage && (
+									<GallerySingleImage
+										data={item}
+										key={`single=${i}`}
+									/>
+								)}
+								{isPairImage && (
+									<GalleryPairImage
+										data={item}
+										key={`pair=${i}`}
+									/>
+								)}
+								{isVideo && (
+									<GalleryVideo
+										data={item}
+										key={`video=${i}`}
+									/>
+								)}
+							</>
+						)
+					})}
 				</Inner>
 			</LayoutWrapper>
 		</ProjectGalleryWrapper>

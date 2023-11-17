@@ -79,11 +79,12 @@ export async function getStaticProps({ params }: any) {
 		*[_type == 'project' && slug.current == "${params.slug[0]}"][0] {
 			...,
 			thumbnailMedia{asset->},
-			imageGallery[] {
-				...,
-				_type == "image" => {
-					asset->
-				},
+			'imageGallery': imageGallery[] {
+				_key,
+				imageType,
+				'singleImageUrl': singleImage.asset->url,
+				'twoImagesUrls': twoImages[].asset->url,
+				'video': video{asset->},
 			},
 		}
 	`;

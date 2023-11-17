@@ -7,7 +7,7 @@ type Props = {
 	data: any;
 };
 
-const GalleryCardWrapper = styled.div`
+const GallerySingleImageWrapper = styled.div`
 	position: relative;
 	width: 100%;
 	height: calc(100vh - 90px);
@@ -16,7 +16,7 @@ const GalleryCardWrapper = styled.div`
 	margin-bottom: ${pxToRem(45)};
 `;
 
-const GalleryCard = (props: Props) => {
+const GallerySingleImage = (props: Props) => {
 	const {
 		data
 	} = props;
@@ -28,21 +28,21 @@ const GalleryCard = (props: Props) => {
 	});
 
 	return (
-		<GalleryCardWrapper
+		<GallerySingleImageWrapper
 			ref={ref}
 			className={`view-element-image-scale-up ${
 				inView ? 'view-element-image-scale-up--in-view' : ''
 			}`}
 		>
-			{data?.asset && (
+			{data?.singleImageUrl && (
 				<Image
-					src={data.asset.url}
+					src={data.singleImageUrl}
 					layout="fill"
 					objectFit="cover"
 				/>
 			)}
-		</GalleryCardWrapper>
+		</GallerySingleImageWrapper>
 	);
 };
 
-export default GalleryCard;
+export default GallerySingleImage;

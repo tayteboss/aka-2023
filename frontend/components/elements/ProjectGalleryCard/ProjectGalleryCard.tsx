@@ -130,9 +130,6 @@ const ProjectGalleryCard = (props: Props) => {
 		rootMargin: '-50px'
 	});
 
-	console.log('thumbnailImage', thumbnailImage);
-	
-
 	return (
 		<Link href={`/works/${slug.current}`} passHref scroll={false}>
 			<ProjectGalleryCardWrapper
