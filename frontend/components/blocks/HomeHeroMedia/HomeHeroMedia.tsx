@@ -74,7 +74,10 @@ const HomeHeroMedia = (props: Props) => {
 	}, []);
 
 	return (
-		<HomeHeroMediaWrapper ref={ref}>
+		<HomeHeroMediaWrapper
+			ref={ref}
+			className="performance"
+		>
 			<DesktopInner
 				style={{ filter: blur, scale }}
 			>
