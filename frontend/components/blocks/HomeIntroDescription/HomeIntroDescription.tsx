@@ -53,7 +53,7 @@ const HomeIntroDescription = (props: Props) => {
 	const dataArray = data.split('');
 
 	return (
-		<HomeIntroDescriptionWrapper ref={ref}>
+		<HomeIntroDescriptionWrapper className="performance" ref={ref}>
 				<LayoutWrapper>
 					<Inner>
 						{data && (
